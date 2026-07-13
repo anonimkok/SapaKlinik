@@ -1,0 +1,7 @@
+{
+    "name": "sapaklinik/sistem-antrian",
+    "description": "Sistem Antrian Klinik Modern - SapaKlinik",
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
+}
