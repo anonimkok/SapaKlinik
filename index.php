@@ -16,6 +16,7 @@ if (isset($_SESSION['id_user'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SapaKlinik - Sistem Antrian Klinik Modern. Booking antrian online, cepat, mudah, dan tanpa ribet.">
+    <link rel="icon" type="image/png" href="image/logo_sapaklinik.png">
     <title>SapaKlinik — Sistem Antrian Klinik Modern</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -215,11 +216,7 @@ if (isset($_SESSION['id_user'])) {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="index.php" class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-emerald-700 flex items-center justify-center animate-pulse-glow">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                    </div>
+                    <img src="image/logo_sapaklinik.png" alt="SapaKlinik" width="32" height="32" class="rounded-lg object-cover animate-pulse-glow">
                     <span class="font-display font-bold text-xl text-white">Sapa<span class="text-primary">Klinik</span></span>
                 </a>
                 
@@ -400,11 +397,7 @@ if (isset($_SESSION['id_user'])) {
     <footer class="relative z-10 border-t border-border/30 py-8 px-4">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
-                <div class="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-emerald-700 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                    </svg>
-                </div>
+                <img src="image/logo_sapaklinik.png" alt="SapaKlinik" width="24" height="24" class="rounded-md object-cover">
                 <span class="font-display font-semibold text-sm text-text-secondary">Sapa<span class="text-primary">Klinik</span></span>
             </div>
             <p class="text-xs text-text-secondary/60 font-mono">&copy; <?= date('Y') ?> SapaKlinik. Sistem Antrian Klinik Modern.</p>

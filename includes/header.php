@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SapaKlinik - Sistem Antrian Klinik Modern. Booking antrian online, cepat dan mudah.">
+    <link rel="icon" type="image/png" href="../image/logo_sapaklinik.png">
     <title><?= e($pageTitle) ?> | SapaKlinik</title>
     
     <!-- Tailwind CSS CDN -->
@@ -353,11 +354,7 @@
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <a href="<?= $_SESSION['role'] === 'admin' ? '../admin/dashboard.php' : '../pasien/dashboard.php' ?>" class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-emerald-700 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                    </div>
+                    <img src="../image/logo_sapaklinik.png" alt="SapaKlinik" width="32" height="32" class="rounded-lg object-cover">
                     <span class="font-display font-bold text-lg text-white">Sapa<span class="text-primary">Klinik</span></span>
                 </a>
                 

@@ -44,9 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Ambil semua poli
-$poli_list = $conn->query("SELECT p.*, (SELECT COUNT(*) FROM antrian a WHERE a.id_poli = p.id_poli AND a.tanggal_berobat = CURDATE()) as antrian_hari_ini FROM poli p ORDER BY p.id_poli ASC");
-
 // Cek mode edit
 $edit_poli = null;
 if (isset($_GET['edit'])) {
@@ -54,9 +51,13 @@ if (isset($_GET['edit'])) {
     $stmt = $conn->prepare("SELECT * FROM poli WHERE id_poli = ?");
     $stmt->bind_param("i", $edit_id);
     $stmt->execute();
-    $edit_poli = $stmt->get_result()->fetch_assoc();
+    $result = $stmt->get_result();
+    $edit_poli = $result->fetch_assoc();
     $stmt->close();
 }
+
+// Ambil semua poli
+$poli_list = $conn->query("SELECT p.*, (SELECT COUNT(*) FROM antrian a WHERE a.id_poli = p.id_poli AND a.tanggal_berobat = CURDATE()) as antrian_hari_ini FROM poli p ORDER BY p.id_poli ASC");
 
 $success = $_SESSION['admin_success'] ?? '';
 $error = $_SESSION['admin_error'] ?? '';
@@ -136,7 +137,7 @@ include '../includes/header.php';
                     <h2 class="font-display font-semibold text-lg">Daftar Poli</h2>
                 </div>
                 
-                <?php if ($poli_list->num_rows > 0): ?>
+                <?php if (!empty($poli_list) && $poli_list->num_rows > 0): ?>
                 <div class="divide-y divide-border/20">
                     <?php while($poli = $poli_list->fetch_assoc()): ?>
                     <div class="table-row px-6 py-4 flex items-center justify-between">
@@ -159,7 +160,7 @@ include '../includes/header.php';
                             <a href="kelola_poli.php?edit=<?= $poli['id_poli'] ?>" class="px-3 py-1.5 rounded-lg text-xs font-mono bg-surface text-text-secondary border border-border hover:border-primary hover:text-primary transition-colors">
                                 Edit
                             </a>
-                            <form method="POST" action="proses_delete.php" class="inline" onsubmit="return confirm('Yakin ingin menghapus poli ini? Semua antrian terkait juga akan dihapus.')">
+                            <form method="POST" action="../admin/proses_delete.php" class="inline" onsubmit="return confirm('Yakin ingin menghapus poli ini? Semua antrian terkait juga akan dihapus.')">
                                 <input type="hidden" name="type" value="poli">
                                 <input type="hidden" name="id" value="<?= $poli['id_poli'] ?>">
                                 <input type="hidden" name="redirect" value="kelola_poli.php">

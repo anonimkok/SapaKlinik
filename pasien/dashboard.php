@@ -70,15 +70,30 @@ include '../includes/header.php';
 
     <!-- Stats Cards -->
     <div class="grid grid-cols-3 gap-4 mb-8">
-        <div class="glass-card rounded-xl p-5 animate-fade-in animate-delay-1">
+        <div class="glass-card rounded-xl p-6 animate-fade-in animate-delay-1 text-center">
+            <div class="flex justify-center mb-3">
+                <div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center border border-border">
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                </div>
+            </div>
             <div class="font-display font-bold text-2xl text-white"><?= $total_booking ?></div>
             <div class="text-xs text-text-secondary font-mono mt-1">Total Booking</div>
         </div>
-        <div class="glass-card rounded-xl p-5 animate-fade-in animate-delay-2">
+        <div class="glass-card rounded-xl p-6 animate-fade-in animate-delay-2 text-center">
+            <div class="flex justify-center mb-3">
+                <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
+                    <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+            </div>
             <div class="font-display font-bold text-2xl text-yellow-400"><?= $total_menunggu ?></div>
             <div class="text-xs text-text-secondary font-mono mt-1">Menunggu</div>
         </div>
-        <div class="glass-card rounded-xl p-5 animate-fade-in animate-delay-3">
+        <div class="glass-card rounded-xl p-6 animate-fade-in animate-delay-3 text-center">
+            <div class="flex justify-center mb-3">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+            </div>
             <div class="font-display font-bold text-2xl text-primary"><?= $total_selesai ?></div>
             <div class="text-xs text-text-secondary font-mono mt-1">Selesai</div>
         </div>
@@ -138,22 +153,22 @@ include '../includes/header.php';
                 <div class="divide-y divide-border/20">
                     <?php while($row = $riwayat->fetch_assoc()): ?>
                     <div class="table-row px-6 py-4">
-                        <div class="flex items-center justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="flex items-center space-x-4">
                                 <!-- Nomor Antrian -->
-                                <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 flex-shrink-0">
-                                    <span class="font-display font-bold text-primary text-lg"><?= str_pad($row['no_antrian'], 2, '0', STR_PAD_LEFT) ?></span>
+                                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 flex-shrink-0">
+                                    <span class="font-display font-bold text-primary text-sm"><?= str_pad($row['no_antrian'], 2, '0', STR_PAD_LEFT) ?></span>
                                 </div>
                                 
-                                <div>
-                                    <h3 class="font-semibold text-sm text-white"><?= e($row['nama_poli']) ?></h3>
+                                <div class="min-w-0">
+                                    <h3 class="font-semibold text-sm text-white truncate"><?= e($row['nama_poli']) ?></h3>
                                     <p class="text-xs text-text-secondary font-mono mt-0.5">
                                         <?= date('d M Y', strtotime($row['tanggal_berobat'])) ?>
                                     </p>
                                 </div>
                             </div>
                             
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-3 ml-14 sm:ml-0">
                                 <?php
                                 $badgeClass = '';
                                 switch($row['status']) {
@@ -167,7 +182,7 @@ include '../includes/header.php';
                                 
                                 <!-- Cetak Tiket -->
                                 <a href="cetak_antrian.php?id=<?= $row['id_antrian'] ?>" 
-                                   class="px-3 py-1.5 rounded-lg text-xs font-mono bg-surface text-text-secondary border border-border hover:border-primary hover:text-primary transition-colors inline-flex items-center space-x-1"
+                                   class="px-3 py-1.5 rounded-lg text-xs font-mono bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors inline-flex items-center space-x-1"
                                    title="Cetak Tiket">
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                                     <span class="hidden sm:inline">Cetak</span>

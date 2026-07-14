@@ -1,7 +1,7 @@
 <?php
-session_start();
-session_unset();
+require_once '../config/database.php';
+
+$_SESSION = [];
 session_destroy();
-header('Location: login.php');
-exit();
+redirect('login.php');
 ?>

@@ -92,7 +92,7 @@ include '../includes/header.php';
     <!-- Stats Cards -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <!-- Total -->
-        <div class="glass-card rounded-xl p-5 animate-fade-in animate-delay-1">
+        <div class="glass-card rounded-xl p-6 animate-fade-in animate-delay-1">
             <div class="flex items-center justify-between mb-3">
                 <div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center border border-border">
                     <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -103,7 +103,7 @@ include '../includes/header.php';
         </div>
         
         <!-- Menunggu -->
-        <div class="glass-card rounded-xl p-5 animate-fade-in animate-delay-2">
+        <div class="glass-card rounded-xl p-6 animate-fade-in animate-delay-2">
             <div class="flex items-center justify-between mb-3">
                 <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
                     <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -114,7 +114,7 @@ include '../includes/header.php';
         </div>
         
         <!-- Diproses -->
-        <div class="glass-card rounded-xl p-5 animate-fade-in animate-delay-3">
+        <div class="glass-card rounded-xl p-6 animate-fade-in animate-delay-3">
             <div class="flex items-center justify-between mb-3">
                 <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
                     <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
@@ -125,7 +125,7 @@ include '../includes/header.php';
         </div>
         
         <!-- Selesai -->
-        <div class="glass-card rounded-xl p-5 animate-fade-in animate-delay-4">
+        <div class="glass-card rounded-xl p-6 animate-fade-in animate-delay-4">
             <div class="flex items-center justify-between mb-3">
                 <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
                     <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -143,12 +143,12 @@ include '../includes/header.php';
             <span class="text-xs text-text-secondary font-mono"><?= $stats['total'] ?> pasien</span>
         </div>
         
-        <?php if ($antrian_list->num_rows > 0): ?>
+        <?php if ($antrian_list && $antrian_list->num_rows > 0): ?>
         <div class="overflow-x-auto">
             <table class="w-full">
                 <thead>
                     <tr class="border-b border-border/30">
-                        <th class="text-left px-6 py-3 text-xs text-text-secondary font-mono font-semibold uppercase tracking-wider">No</th>
+                        <th class="text-center px-6 py-3 text-xs text-text-secondary font-mono font-semibold uppercase tracking-wider">No</th>
                         <th class="text-left px-6 py-3 text-xs text-text-secondary font-mono font-semibold uppercase tracking-wider">Pasien</th>
                         <th class="text-left px-6 py-3 text-xs text-text-secondary font-mono font-semibold uppercase tracking-wider">Poli</th>
                         <th class="text-left px-6 py-3 text-xs text-text-secondary font-mono font-semibold uppercase tracking-wider">Status</th>
@@ -158,8 +158,8 @@ include '../includes/header.php';
                 <tbody>
                     <?php while($row = $antrian_list->fetch_assoc()): ?>
                     <tr class="table-row border-b border-border/20">
-                        <td class="px-6 py-4">
-                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                        <td class="px-6 py-4 text-center">
+                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 mx-auto">
                                 <span class="font-display font-bold text-primary text-sm"><?= str_pad($row['no_antrian'], 2, '0', STR_PAD_LEFT) ?></span>
                             </div>
                         </td>
@@ -185,7 +185,7 @@ include '../includes/header.php';
                         <td class="px-6 py-4 text-right">
                             <div class="flex items-center justify-end space-x-2">
                                 <?php if($row['status'] === 'Menunggu'): ?>
-                                <form method="POST" action="proses_update.php" class="inline">
+                                <form method="POST" action="../admin/proses_update.php" class="inline">
                                     <input type="hidden" name="id_antrian" value="<?= $row['id_antrian'] ?>">
                                     <input type="hidden" name="status" value="Diproses">
                                     <input type="hidden" name="redirect_date" value="<?= e($filter_date) ?>">
@@ -195,7 +195,7 @@ include '../includes/header.php';
                                     </button>
                                 </form>
                                 <?php elseif($row['status'] === 'Diproses'): ?>
-                                <form method="POST" action="proses_update.php" class="inline">
+                                <form method="POST" action="../admin/proses_update.php" class="inline">
                                     <input type="hidden" name="id_antrian" value="<?= $row['id_antrian'] ?>">
                                     <input type="hidden" name="status" value="Selesai">
                                     <input type="hidden" name="redirect_date" value="<?= e($filter_date) ?>">
@@ -207,7 +207,7 @@ include '../includes/header.php';
                                 <?php endif; ?>
                                 
                                 <?php if($row['status'] !== 'Selesai'): ?>
-                                <form method="POST" action="proses_delete.php" class="inline" onsubmit="return confirm('Yakin ingin menghapus antrian ini?')">
+                                <form method="POST" action="../admin/proses_delete.php" class="inline" onsubmit="return confirm('Yakin ingin menghapus antrian ini?')">
                                     <input type="hidden" name="type" value="antrian">
                                     <input type="hidden" name="id" value="<?= $row['id_antrian'] ?>">
                                     <input type="hidden" name="redirect" value="dashboard.php?tanggal=<?= e($filter_date) ?>">
